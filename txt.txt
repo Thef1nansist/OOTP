@@ -1,2 +1,7 @@
 hello work
 chang
+<<<<<<< HEAD
+=======
+hi
+lol
+>>>>>>> cf1deff... Add Lol
