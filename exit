@@ -1,0 +1,63 @@
+[33mcommit 0cffb5d46f4e748ccb916a0bba2199f854bcd1b8[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Thef1nansist <vladsavhchenko994@gmail.com>
+Date:   Fri Sep 11 22:05:53 2020 +0300
+
+    hi
+
+[33mcommit 29b432820710235cfcd9991a6f2ad7d672fe3d56[m
+Merge: a25a55c 2e867ef
+Author: Thef1nansist <vladsavhchenko994@gmail.com>
+Date:   Sun Sep 6 13:59:28 2020 +0300
+
+    Merge branch 'master' of https://github.com/Thef1nansist/OOTP into master
+
+[33mcommit 2e867ef18648817db732f7e72cf504dd2fde37c1[m
+Author: Vlad <54819434+Thef1nansist@users.noreply.github.com>
+Date:   Sun Sep 6 13:36:18 2020 +0300
+
+    Create README.md
+
+[33mcommit a25a55c31c6c370b2572d97ee6f6e5582e3bee62[m
+Author: Thef1nansist <vladsavhchenko994@gmail.com>
+Date:   Sun Sep 6 13:27:50 2020 +0300
+
+    Revert "just"
+    
+    This reverts commit 16ca24e3ba60d99da612a01f0d6be07f077d741b.
+
+[33mcommit 16ca24e3ba60d99da612a01f0d6be07f077d741b[m
+Author: Thef1nansist <vladsavhchenko994@gmail.com>
+Date:   Sun Sep 6 13:24:48 2020 +0300
+
+    just
+
+[33mcommit b20cf26a4d77f54be3d8bf01d3f4740d2fcca5a8[m
+Merge: 1a44c27 7ea2e95
+Author: Thef1nansist <vlad.savchenko.2015@inbox.ru>
+Date:   Sat Sep 5 15:24:06 2020 +0300
+
+    second
+
+[33mcommit 7ea2e9540db2b706b44126c99b3b4750e8e6420a[m[33m ([m[1;32mtest2[m[33m)[m
+Author: Thef1nansist <vlad.savchenko.2015@inbox.ru>
+Date:   Sat Sep 5 15:19:53 2020 +0300
+
+    new
+
+[33mcommit 1a44c27540496342036e2da4837a2bcc45901e2c[m
+Author: Thef1nansist <vlad.savchenko.2015@inbox.ru>
+Date:   Sat Sep 5 15:16:17 2020 +0300
+
+    chang
+
+[33mcommit 13b54f79f9ba35bae009719b2971061d0d5ac07d[m
+Author: Thef1nansist <vlad.savchenko.2015@inbox.ru>
+Date:   Sat Sep 5 15:13:00 2020 +0300
+
+    NewFile
+
+[33mcommit 05772b6dcb2a1ff9aa33cd28d679cab43eab4d3d[m[33m ([m[1;32mtest3[m[33m, [m[1;32mtest[m[33m)[m
+Author: Thef1nansist <vlad.savchenko.2015@inbox.ru>
+Date:   Sat Sep 5 14:30:12 2020 +0300
+
+    first
