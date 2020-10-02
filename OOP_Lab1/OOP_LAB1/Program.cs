@@ -94,10 +94,8 @@ namespace lab_2
             #region Неявно типизированные локальные переменные
 
             var intovaya = 567;
-            var color = Color.Aqua;
             var client = new WebClient();
             var str = "строка";
-            var list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             #endregion
 
