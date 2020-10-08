@@ -14,7 +14,7 @@ namespace OOP_4Lab
         }
         public List()
         {
-            
+             // здесь ошибка точно
         }
 
         public T Data { get; set; }
@@ -36,9 +36,9 @@ namespace OOP_4Lab
 
             countofSymbols++;
         }
-        public static List<T> operator <<(List<T> op1, List<T> op2)
-        {
-            return new List<T>(); и что делать? o
+        public static List<T> operator >>(List<T> op1, List<T> op2) // давай
+        {   
+            return new List<T>();
         }
         public void Clear()
         {
