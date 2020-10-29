@@ -26,7 +26,6 @@ namespace OOP_LAB_02
             {
                 Console.WriteLine("net");
             }
-
             //Console.WriteLine(name.ToString());
 
 
@@ -35,6 +34,7 @@ namespace OOP_LAB_02
             list.Add(rok);
             list.Add(prikol);
             list.Add(name2);
+
             Console.WriteLine("Введите автора книги: ");
             var au = Console.ReadLine();
             foreach (var book in list)
@@ -55,7 +55,7 @@ namespace OOP_LAB_02
                     Console.WriteLine("\n");
                 }
             }
-            
+
 
             Console.ReadKey(true);
         }
