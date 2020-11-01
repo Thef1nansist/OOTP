@@ -1,8 +1,12 @@
 ﻿using NPOI.SS.Formula.Functions;
+using NPOI.XSSF.Model;
 using Org.BouncyCastle.X509;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace OOP_LAb006
 {
@@ -158,6 +162,7 @@ namespace OOP_LAb006
         {
             edition = _edition;
         }
+
         void IDescription.Display()
         {
             Console.WriteLine("Это Издательство");
@@ -181,7 +186,7 @@ namespace OOP_LAb006
 
     public partial class PartialTest
     {
-       public  void test()
+        public void test()
         {
             Console.WriteLine("Основной файл");
         }
@@ -224,7 +229,7 @@ namespace OOP_LAb006
         {
             Console.WriteLine($"Name:{name__}, Возраст:{age__}");
         }
-       
+
     }
     enum Edit
     {
@@ -255,7 +260,7 @@ namespace OOP_LAb006
         }
         public void Print()
         {
-            foreach(var i in list)
+            foreach (var i in list)
             {
                 Console.WriteLine(i);
             }
@@ -269,7 +274,7 @@ namespace OOP_LAb006
             int year = 2004;
             List<IZdatelstvo> arrayList = library.GetList().GetRange(0, library.GetList().Count);
             Console.WriteLine("Книги после 2004 года:");
-            for(var i =0; i < arrayList.Count; i++)
+            for (var i = 0; i < arrayList.Count; i++)
             {
                 if (arrayList[i].dataOfEdition > year)
                 {
@@ -282,7 +287,7 @@ namespace OOP_LAb006
         {
             int sum = 0;
             List<IZdatelstvo> arraylist = library.GetList().GetRange(0, library.GetList().Count);
-            for(int i = 0; i < arraylist.Count; i++)
+            for (int i = 0; i < arraylist.Count; i++)
             {
                 sum += arraylist[i].price;
             }
@@ -293,9 +298,62 @@ namespace OOP_LAb006
             List<IZdatelstvo> arraylist = library.GetList().GetRange(0, library.GetList().Count);
             int count = arraylist.Count;
             Console.WriteLine($"Кол-во книг в библиотеке:{count} ");
-
-
         }
+        public static void SearcRead()
+        {
+            int indexcount0 = 0;
+            int indexcount1 = 1;
+            int indexcount2 = 2;
+            int indexcount3 = 3;
+            int indexcount4 = 4;
+            int indexcount5 = 5;
+            int indexcount6 = 6;
+            int indexcount7 = 7;
+            string tmp = "";
+            string[] text;
+            StreamReader fs = new StreamReader(@"D:\UN\OOP_LAb006\1.txt");
+            while (true)
+            {
+                tmp = fs.ReadLine();
+                if (tmp == null)
+                    continue;
+                text = (string[])(tmp.Split(','));
+
+                if (int.Parse(text[indexcount5]) > 2004)
+                {
+                    Console.WriteLine(Tostring());
+                }
+            }
+            string Tostring()
+            {
+                string description =
+                  $"Наименование:{text[indexcount0]}\n" +
+                  $"Количество страниц:{text[indexcount1]}\n" +
+                  $"Цена:{text[indexcount2]}\n" +
+                  $"Тираж:{text[indexcount3]}\n" +
+                  $"Жанр:{text[indexcount4]}\n" +
+                  $"Год издания:{text[indexcount5]}\n" +
+                  $"Автор:{text[indexcount6]}\n" +
+                  $"Издательство:{text[indexcount7]}\n";
+
+                return description;
+            }
+        }
+        //public static async void SearchFromJson()
+        //{
+        //    //List<IZdatelstvo> arraylist = library.GetList().GetRange(0, library.GetList().Count);
+        //    //IZdatelstvo zdatelstvo = new IZdatelstvo();
+        //    //using (FileStream fs = File.Create("user.json"))
+        //    //{
+        //    //    await JsonSerializer.SerializeAsync(fs, arraylist);
+        //    //    File.WriteAllText("user.json", (string)zdatelstvo);
+        //    //}
+        //    using (FileStream fs = new FileStream("user.json", FileMode.OpenOrCreate))
+        //    {
+        //        IZdatelstvo restoredPerson = await JsonSerializer.DeserializeAsync<IZdatelstvo>(fs);
+        //        Console.WriteLine($"Name: {restoredPerson.name}  Age: {restoredPerson.dataOfEdition}");
+        //    }
+        //}
     }
     class Program
     {
@@ -310,12 +368,14 @@ namespace OOP_LAb006
             library.AddElements(new IZdatelstvo("Начало", 505, 100, 555, "60fps", 1945, "Квит", "Беларусь"));
             library.AddElements(new IZdatelstvo("Конец", 1545, 600, 145, "Closed Captions", 1941, "Mia Khalifa", "Ливан"));
 
-            library.Print();
-            LibraryController.SearchYear(library);
-            LibraryController.SearchSum(library);
-            LibraryController.SearcCountBook(library);
+            //library.Print();
+            //LibraryController.SearchYear(library);
+            //LibraryController.SearchSum(library);
+            //LibraryController.SearcCountBook(library);
+            //LibraryController.SearcRead();
+            //LibraryController.SearchFromJson();
 
-         
+
             //IDescription[] array = new IDescription[8];
             //array[0] = new PrintEdition("Gari", 300, 50);
             //array[1] = new Magazine("Сказки деда", 100, 20, 155);
@@ -326,14 +386,14 @@ namespace OOP_LAb006
             //array[6] = new IZdatelstvo("Tor", 1545, 540, 14555, "Сказки", 2019, "Иванов", "Беларусь");
             //array[7] = new IZdatelstvo("Mstiteli", 1545, 540, 14555, "Сказки", 2019, "Иванов", "Беларусь"); 
 
-            
+
             //Console.WriteLine(array[4] is IZdatelstvo);
             ///////////////////////////////////////////// partial класс
             //PartialTest partial = new PartialTest();
             //partial.test();
             //partial.test2();
 
-            
+
             ////////////////////////////////////////////
             ////for(int i =0; i< array.Length; i++)
             ////{
