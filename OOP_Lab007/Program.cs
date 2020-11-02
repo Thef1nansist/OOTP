@@ -1,15 +1,14 @@
-﻿using NPOI.SS.Formula.Functions;
-using NPOI.XSSF.Model;
-using Org.BouncyCastle.X509;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace OOP_LAb006
+namespace OOP_Lab007
 {
+
+
+
     public interface IDescription
     {
         void Display();
@@ -28,6 +27,9 @@ namespace OOP_LAb006
             name = _name;
             CountPage = _countpage;
             price = _price;
+            if(CountPage<0)
+                throw new InvalidData($"В {_countpage} допущена ошибка в книге{ _name}");
+           
         }
 
         void IDescription.Display()
@@ -59,6 +61,9 @@ namespace OOP_LAb006
         public Magazine(string _name, int _countpage, int _price, int _circulation) : base(_name, _countpage, _price)
         {
             circulation = _circulation;
+            if(circulation<0)
+                throw new InvalidData($"В поле {_circulation} допущена ошибка в книге{ _name} ");
+
         }
 
         void IDescription.Display()
@@ -109,7 +114,10 @@ namespace OOP_LAb006
         public Textbook(string _name, int _countpage, int _price, int _circulation, string _genre, int _dataofetition) : base(_name, _countpage, _price, _circulation, _genre)
         {
             dataOfEdition = _dataofetition;
+            if (dataOfEdition < 0 || dataOfEdition == 0)
+                throw new InvalidData($"В книге {_name} допущена ошибка по дате в книге{ _name}");
         }
+        
         void IDescription.Display()
         {
             Console.WriteLine("Это Учебник");
@@ -162,7 +170,7 @@ namespace OOP_LAb006
         {
             edition = _edition;
         }
-
+        
         void IDescription.Display()
         {
             Console.WriteLine("Это Издательство");
@@ -220,6 +228,7 @@ namespace OOP_LAb006
         public void IAmPrinting(IDescription obj)
         {
             obj.Display();
+            
         }
     }
 
@@ -263,6 +272,8 @@ namespace OOP_LAb006
         }
         public void Print()
         {
+            //if (list.Count == 0)
+            //    throw new InvalidNull($"Лист пустой");
             foreach (var i in list)
             {
                 Console.WriteLine(i);
@@ -276,6 +287,8 @@ namespace OOP_LAb006
         {
             int year = 2004;
             List<IZdatelstvo> arrayList = library.GetList().GetRange(0, library.GetList().Count);
+            if (arrayList.Count == 0)
+                throw new InvalidNull("В блоке поиска года список пуст");
             Console.WriteLine("Книги после 2004 года:");
             for (var i = 0; i < arrayList.Count; i++)
             {
@@ -293,6 +306,10 @@ namespace OOP_LAb006
             for (int i = 0; i < arraylist.Count; i++)
             {
                 sum += arraylist[i].price;
+            }
+            if (sum < 0 || sum>int.MaxValue)
+            {
+                throw new InvalidExepception("Сумма меньше нуля или больше допустимого значения.В блоке поиска суммы", sum);
             }
             Console.WriteLine($"Общая стоимость книг:{sum}$");
         }
@@ -315,6 +332,8 @@ namespace OOP_LAb006
             string tmp = "";
             string[] text;
             StreamReader fs = new StreamReader(@"D:\UN\OOP_LAb006\1.txt");
+            if (fs == null)
+                throw new Exception("Файл не был открыт");
             while (true)
             {
                 tmp = fs.ReadLine();
@@ -362,7 +381,7 @@ namespace OOP_LAb006
     public class Person
     {
         [JsonPropertyName("firstname")]
-        public string Name { get; set; } 
+        public string Name { get; set; }
         public int Age { get; set; }
     }
     class Program
@@ -371,53 +390,81 @@ namespace OOP_LAb006
         {
             Library library = new Library();
 
-            library.AddElements(new IZdatelstvo("Mstiteli", 1545, 540, 14555, "Arabian", 2019, "lana Roads", "Сша"));
-            library.AddElements(new IZdatelstvo("Pricol", 200, 540, 14555, "Anal", 2000, "Riley Reid", "США"));
-            library.AddElements(new IZdatelstvo("Выживший", 300, 540, 14555, "Azians", 2000, "Abaalla Danger", "США"));
-            library.AddElements(new IZdatelstvo("Великий", 400, 540, 14555, "HD", 2009, "Alla Elfi", "Россия"));
-            library.AddElements(new IZdatelstvo("Начало", 505, 100, 555, "60fps", 1945, "Квит", "Беларусь"));
-            library.AddElements(new IZdatelstvo("Конец", 1545, 600, 145, "Closed Captions", 1941, "Mia Khalifa", "Ливан"));
+            try
+            {
 
-            //library.Print();
-            //LibraryController.SearchYear(library);
-            //LibraryController.SearchSum(library);
-            //LibraryController.SearcCountBook(library);
-            //LibraryController.SearcRead();
-            //LibraryController.SearchFromJson();
+                library.AddElements(new IZdatelstvo("Mstiteli", 1545, 540, 14555, "Arabian", 2019, "lana Roads", "Сша"));
+                library.AddElements(new IZdatelstvo("Pricol", 200, 540, 14555, "Anal", 2000, "Riley Reid", "США"));
+                library.AddElements(new IZdatelstvo("Выживший", 300, 540, 14555, "Azians", 2000, "Abaalla Danger", "США"));
+                library.AddElements(new IZdatelstvo("Великий", 400, 540, 14555, "HD", 2009, "Alla Elfi", "Россия"));
+                library.AddElements(new IZdatelstvo("Начало", 505, 100, 555, "60fps", 1945, "Квит", "Беларусь"));
+                library.AddElements(new IZdatelstvo("Конец", 1545, 600, 145, "Closed Captions", 1941, "Mia Khalifa", "Ливан"));
 
-
-            //IDescription[] array = new IDescription[8];
-            //array[0] = new PrintEdition("Gari", 300, 50);
-            //array[1] = new Magazine("Сказки деда", 100, 20, 155);
-            //array[2] = new Book("Сказки бабушки", 10, 90, 255, "Фентази");
-            //array[3] = new Textbook("Сказки Славы", 1000, 950, 55, "Приключения", 2004);
-            //array[4] = new Author("Сказки Влада", 1500, 50, 155, "Детектив", 2001, "Савченко");
-            //array[5] = new IZdatelstvo("Сказки Вани", 1545, 540, 14555, "Сказки", 2019, "Иванов", "Беларусь");
-            //array[6] = new IZdatelstvo("Tor", 1545, 540, 14555, "Сказки", 2019, "Иванов", "Беларусь");
-            //array[7] = new IZdatelstvo("Mstiteli", 1545, 540, 14555, "Сказки", 2019, "Иванов", "Беларусь"); 
+                //library.Print();
+                LibraryController.SearchYear(library);
+                LibraryController.SearchSum(library);
+                //LibraryController.SearcCountBook(library);
+                LibraryController.SearcRead();
+                //LibraryController.SearchFromJson();
 
 
-            //Console.WriteLine(array[4] is IZdatelstvo);
-            ///////////////////////////////////////////// partial класс
-            //PartialTest partial = new PartialTest();
-            //partial.test();
-            //partial.test2();
+                //IDescription[] array = new IDescription[8];
+                //array[0] = new PrintEdition("Gari", 300, 50);
+                //array[1] = new Magazine("Сказки деда", 100, 20, 155);
+                //array[2] = new Book("Сказки бабушки", 10, 90, 255, "Фентази");
+                //array[3] = new Textbook("Сказки Славы", 1000, 950, 55, "Приключения", 2004);
+                //array[4] = new Author("Сказки Влада", 1500, 50, 155, "Детектив", 500, "Савченко");
+                //array[5] = new IZdatelstvo("Сказки Вани", 1545, 540, 14555, "Сказки", 504, "Иванов", "Беларусь");
+                //array[6] = new IZdatelstvo("Tor", 1545, 540, 14555, "Сказки", 2019, "Иванов", "Беларусь");
+                //array[7] = new IZdatelstvo("Mstiteli", 1545, 540, 14555, "Сказки", 2019, "Иванов", "Беларусь");
+
+                //library.Print();
 
 
-            ////////////////////////////////////////////
-            ////for(int i =0; i< array.Length; i++)
-            ////{
-            ////    Console.WriteLine($"{array[i]}\n");
-            ////}
-            ////user2 pr = new user2();
+                //Console.WriteLine(array[4] is IZdatelstvo);
+                ///////////////////////////////////////////// partial класс
+                //PartialTest partial = new PartialTest();
+                //partial.test();
+                //partial.test2();
 
-            ////pr.Display();
 
-            //Printer p = new Printer();
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    p.IAmPrinting(array[i]);
-            //}
+                ////////////////////////////////////////////
+                ////for(int i =0; i< array.Length; i++)
+                ////{
+                ////    Console.WriteLine($"{array[i]}\n");
+                ////}
+                ////user2 pr = new user2();
+
+                ////pr.Display();
+
+                //Printer p = new Printer();
+                //for (int i = 0; i < 5; i++)
+                //{
+                //    p.IAmPrinting(array[i]);
+                //}
+            }
+            catch (InvalidExepception ex)
+            {
+                Console.WriteLine($"Некоректное значение:{ex.Value} \n Информация:{ex.Message}");
+            }
+            catch (InvalidData ex)
+            {
+                Console.WriteLine($"Ошибка:{ex.Message}");
+            }
+            catch(InvalidNull ex)
+            {
+                Console.WriteLine($"Некоректное значение:{ex.Message}");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Остальные приколы{ex.Message}");
+            }
+            finally
+            {
+                Console.WriteLine("Программа завершена");
+            }
+           
+
         }
     }
 
