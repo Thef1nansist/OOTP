@@ -1,0 +1,10 @@
+Name: OOP_Lab015.exe
+
+Configuration:
+Conficuration file name: D:\UN\OOP_Lab015\bin\Debug\OOP_Lab015.exe.Config
+
+Assemblies:
+mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+OOP_Lab015, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.resources, Version=4.0.0.0, Culture=ru, PublicKeyToken=b77a5c561934e089
